@@ -64,7 +64,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenM
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
-              <span>الموقع الرسمي • جيل مجاز عمار (تأسس 1984)</span>
+              <span>الموقع الرسمي • جيل مجاز عمار (تأسس 1986)</span>
             </span>
             <span className="hidden sm:inline-block text-slate-700">|</span>
             <span className="hidden sm:flex items-center gap-1 text-[11px] text-slate-400">
@@ -135,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onOpenM
                 <span>القسم الجهوي الأول</span>
                 <span className="w-1 h-1 rounded-full bg-slate-600" />
                 <span className="text-red-400/90 font-semibold">ولاية قالمة</span>
-                <span className="hidden sm:inline text-slate-500">• 1984</span>
+                <span className="hidden sm:inline text-slate-500">• 1986</span>
               </div>
             </div>
           </div>
