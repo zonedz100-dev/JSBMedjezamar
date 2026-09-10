@@ -75,7 +75,7 @@ export const TopClubsStripBar: React.FC<TopClubsStripBarProps> = ({
                     <button
                       key={club.id}
                       onClick={() => handleClubClick(club)}
-                      className={`group relative flex items-center gap-1.5 py-1 px-2 rounded-xl transition-all duration-200 cursor-pointer ${
+                      className={`group relative flex items-center gap-1.5 py-1.5 px-2.5 min-h-[38px] rounded-xl transition-all duration-200 cursor-pointer active:scale-95 ${
                         isMain
                           ? 'bg-amber-500/15 border border-amber-400/80 shadow-sm ring-1 ring-amber-400/30 hover:bg-amber-500/25'
                           : isOpponent
@@ -85,7 +85,7 @@ export const TopClubsStripBar: React.FC<TopClubsStripBarProps> = ({
                       title={`${index + 1}. ${club.nameAr} (${club.nameFr}) - ولاية ${club.wilaya}`}
                     >
                       <div className="relative shrink-0">
-                        <ClubBadge clubId={club.id} size="sm" className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                        <ClubBadge clubId={club.id} size="xs" className="group-hover:scale-110 transition-transform" />
                         {isMain && (
                           <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-amber-400 ring-1 ring-slate-950" />
                         )}

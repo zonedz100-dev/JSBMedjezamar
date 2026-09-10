@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NEWS_ARTICLES, JSBMA_SQUAD } from '../data/newsData';
 import { NewsArticle } from '../types';
+import { SportsMagazineHero } from './SportsMagazineHero';
 import { Calendar, User, Eye, ArrowLeft, X, Share2, Sparkles, Shield, Trophy, FileText, Download, ExternalLink } from 'lucide-react';
 
 export const TeamNews: React.FC = () => {
@@ -34,6 +35,13 @@ export const TeamNews: React.FC = () => {
         </p>
       </div>
 
+      {/* Featured Sports Magazine Layout (Directly from merr1.png) */}
+      {selectedCategory === 'الكل' && (
+        <div className="mb-12">
+          <SportsMagazineHero onSelectArticle={(art) => setSelectedArticle(art)} />
+        </div>
+      )}
+
       {/* Category Pills */}
       <div className="flex justify-center gap-2 mb-8 overflow-x-auto pb-2">
         {categories.map((cat) => (
@@ -56,7 +64,7 @@ export const TeamNews: React.FC = () => {
         {filteredArticles.map((article) => (
           <div
             key={article.id}
-            className="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between shadow-xl group"
+            className="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden hover:border-red-500/50 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between shadow-xl group relative"
           >
             <div>
               <div className="relative h-48 overflow-hidden">
@@ -76,6 +84,9 @@ export const TeamNews: React.FC = () => {
                     </span>
                   )}
                 </div>
+
+                {/* Angled Bottom Ribbon Accent from merr1.png */}
+                <div className="absolute -bottom-1 left-0 right-0 h-4 bg-gradient-to-r from-red-600 via-rose-600 to-amber-500 [clip-path:polygon(0_60%,100%_0%,100%_100%,0%_100%)] pointer-events-none" />
               </div>
 
               <div className="p-5">

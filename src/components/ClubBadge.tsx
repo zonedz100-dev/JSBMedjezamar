@@ -3,7 +3,7 @@ import { CLUBS_DATA } from '../data/clubsData';
 
 interface ClubBadgeProps {
   clubId: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
   className?: string;
 }
 
@@ -11,25 +11,31 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
   const [imageError, setImageError] = React.useState(false);
   const club = CLUBS_DATA.find((c) => c.id === clubId) || CLUBS_DATA[0];
 
-  const sizeClasses = {
+  const sizeClasses: Record<string, string> = {
+    xs: 'w-6 h-6',
     sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-20 h-20',
-    xl: 'w-32 h-32',
-  }[size];
+    md: 'w-11 h-11 md:w-12 md:h-12',
+    lg: 'w-16 h-16 md:w-20 md:h-20',
+    xl: 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32',
+    '2xl': 'w-32 h-32 md:w-40 md:h-40',
+  };
+
+  const currentSizeClass = sizeClasses[size] || sizeClasses.md;
 
   // If real club logo image is available and hasn't errored
   if (club?.logoUrl && !imageError) {
     return (
       <div
-        className={`relative inline-flex items-center justify-center select-none ${sizeClasses} ${className}`}
+        className={`relative inline-flex items-center justify-center shrink-0 select-none ${currentSizeClass} ${className}`}
         title={`${club.nameAr} (${club.acronym})`}
       >
         <img
           src={club.logoUrl}
           alt={club.nameAr}
-          className="w-full h-full object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-contain aspect-square drop-shadow-md transition-transform duration-300 hover:scale-105"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          decoding="async"
           onError={() => setImageError(true)}
         />
       </div>
@@ -40,14 +46,16 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
   if (clubId === 'jsbma') {
     return (
       <div
-        className={`relative inline-flex items-center justify-center select-none ${sizeClasses} ${className}`}
+        className={`relative inline-flex items-center justify-center shrink-0 select-none ${currentSizeClass} ${className}`}
         title={club.nameAr}
       >
         <img
           src="/logos/clubs/jsbma.png"
           alt={club.nameAr}
-          className="w-full h-full object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-contain aspect-square drop-shadow-md transition-transform duration-300 hover:scale-105"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             const img = e.currentTarget;
             img.style.display = 'none';
@@ -61,14 +69,16 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
   if (clubId === 'irbeh') {
     return (
       <div
-        className={`relative inline-flex items-center justify-center select-none ${sizeClasses} ${className}`}
+        className={`relative inline-flex items-center justify-center shrink-0 select-none ${currentSizeClass} ${className}`}
         title={club.nameAr}
       >
         <img
           src="/logos/clubs/irbeh.png"
           alt={club.nameAr}
-          className="w-full h-full object-contain drop-shadow-md transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-contain aspect-square drop-shadow-md transition-transform duration-300 hover:scale-105"
           referrerPolicy="no-referrer"
+          loading="lazy"
+          decoding="async"
           onError={(e) => {
             const img = e.currentTarget;
             img.style.display = 'none';
@@ -82,8 +92,15 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
   const isCircle = club.badgeStyle === 'circle';
 
   return (
-    <div className={`relative inline-block select-none ${sizeClasses} ${className}`} title={club.nameAr}>
-      <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-sm">
+    <div
+      className={`relative inline-flex items-center justify-center shrink-0 select-none ${currentSizeClass} ${className}`}
+      title={club.nameAr}
+    >
+      <svg
+        viewBox="0 0 160 160"
+        preserveAspectRatio="xMidYMid meet"
+        className="w-full h-full aspect-square drop-shadow-sm"
+      >
         {isCircle ? (
           <>
             <circle cx="80" cy="80" r="74" fill={club.primaryColor} stroke="#FFFFFF" strokeWidth="4" />
@@ -136,10 +153,10 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
   );
 };
 
-export const LRFALogo: React.FC<{ size?: string; className?: string }> = ({ size = 'w-12 h-12', className = '' }) => {
+export const LRFALogo: React.FC<{ size?: string; className?: string }> = ({ size = 'w-10 h-10 md:w-12 md:h-12', className = '' }) => {
   return (
-    <div className={`relative inline-block ${size} ${className}`} title="رابطة عنابة لكرة القدم">
-      <svg viewBox="0 0 160 160" className="w-full h-full drop-shadow-md">
+    <div className={`relative inline-flex items-center justify-center shrink-0 ${size} ${className}`} title="رابطة عنابة لكرة القدم">
+      <svg viewBox="0 0 160 160" preserveAspectRatio="xMidYMid meet" className="w-full h-full aspect-square drop-shadow-md">
         {/* Outer White Badge */}
         <circle cx="80" cy="80" r="76" fill="#FFFFFF" stroke="#0F172A" strokeWidth="4" />
         

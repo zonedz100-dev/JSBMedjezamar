@@ -88,26 +88,26 @@ export const MatchBanner: React.FC<MatchBannerProps> = ({
       </div>
 
       {/* Main Face-Off Section (Replicating the uploaded poster) */}
-      <div className="relative z-10 px-4 md:px-8 py-6 md:py-8 max-w-5xl mx-auto">
-        <div className="grid grid-cols-11 items-center gap-2 md:gap-4">
+      <div className="relative z-10 px-3 sm:px-4 md:px-8 py-4 sm:py-6 md:py-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-11 items-center gap-1.5 sm:gap-3 md:gap-5">
           
           {/* Home Team: JSB Medjez Amar (Red) */}
-          <div className="col-span-5 flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gradient-to-br from-red-950/70 via-slate-900/60 to-red-900/40 border border-red-500/30 backdrop-blur-sm shadow-xl hover:border-red-400/60 transition group">
-            <div className="relative mb-3 transform group-hover:scale-105 transition-transform duration-300">
+          <div className="col-span-5 flex flex-col items-center text-center p-2.5 sm:p-4 md:p-6 rounded-2xl bg-gradient-to-br from-red-950/70 via-slate-900/60 to-red-900/40 border border-red-500/30 backdrop-blur-sm shadow-xl hover:border-red-400/60 transition group">
+            <div className="relative mb-2 sm:mb-3 transform group-hover:scale-105 transition-transform duration-300">
               <div className="absolute inset-0 bg-red-600/30 rounded-full blur-xl animate-pulse" />
-              <ClubBadge clubId="jsbma" size="xl" className="relative w-24 h-24 md:w-36 md:h-36" />
+              <ClubBadge clubId="jsbma" size="xl" className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36" />
             </div>
 
-            <span className="inline-block text-[11px] md:text-xs font-bold bg-red-600/30 text-red-300 border border-red-500/30 px-3 py-0.5 rounded-full mb-1">
+            <span className="inline-block text-[10px] sm:text-xs font-bold bg-red-600/30 text-red-300 border border-red-500/30 px-2.5 py-0.5 rounded-full mb-1">
               المستضيف • ولاية قالمة
             </span>
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-white leading-tight">
+            <h2 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-black text-white leading-tight">
               جيل بلدية مجاز عمار
             </h2>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs md:text-sm font-black text-red-400 tracking-wider">JSBMA</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-1">
+              <span className="text-[11px] sm:text-xs md:text-sm font-black text-red-400 tracking-wider">JSBMA</span>
               <span className="text-slate-400 text-xs">•</span>
-              <span className="text-xs text-slate-300 font-medium">تأسس 1986</span>
+              <span className="text-[10px] sm:text-xs text-slate-300 font-medium">تأسس 1986</span>
             </div>
             <p className="hidden md:block text-[11px] text-red-200/80 mt-2 font-medium">
               لقب النادي: "الصاعد ميمو" • أسود مجاز عمار
@@ -117,9 +117,9 @@ export const MatchBanner: React.FC<MatchBannerProps> = ({
           {/* VS & Match Spark */}
           <div className="col-span-1 flex flex-col items-center justify-center">
             <div className="relative flex items-center justify-center">
-              <div className="w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-emerald-500 p-[2px] shadow-2xl animate-spin-slow">
+              <div className="w-8 h-8 sm:w-11 sm:h-11 md:w-16 md:h-16 rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-emerald-500 p-[2px] shadow-2xl animate-spin-slow">
                 <div className="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
-                  <span className="font-black text-base md:text-2xl italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-emerald-400">
+                  <span className="font-black text-xs sm:text-sm md:text-2xl italic text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-rose-400 to-emerald-400">
                     VS
                   </span>
                 </div>
@@ -128,22 +128,22 @@ export const MatchBanner: React.FC<MatchBannerProps> = ({
           </div>
 
           {/* Away Team: IRB El Hadjar (Green) */}
-          <div className="col-span-5 flex flex-col items-center text-center p-3 md:p-6 rounded-2xl bg-gradient-to-bl from-emerald-950/70 via-slate-900/60 to-emerald-900/40 border border-emerald-500/30 backdrop-blur-sm shadow-xl hover:border-emerald-400/60 transition group">
-            <div className="relative mb-3 transform group-hover:scale-105 transition-transform duration-300">
+          <div className="col-span-5 flex flex-col items-center text-center p-2.5 sm:p-4 md:p-6 rounded-2xl bg-gradient-to-bl from-emerald-950/70 via-slate-900/60 to-emerald-900/40 border border-emerald-500/30 backdrop-blur-sm shadow-xl hover:border-emerald-400/60 transition group">
+            <div className="relative mb-2 sm:mb-3 transform group-hover:scale-105 transition-transform duration-300">
               <div className="absolute inset-0 bg-emerald-600/30 rounded-full blur-xl animate-pulse" />
-              <ClubBadge clubId="irbeh" size="xl" className="relative w-24 h-24 md:w-36 md:h-36" />
+              <ClubBadge clubId="irbeh" size="xl" className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-36 lg:h-36" />
             </div>
 
-            <span className="inline-block text-[11px] md:text-xs font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-3 py-0.5 rounded-full mb-1">
+            <span className="inline-block text-[10px] sm:text-xs font-bold bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-2.5 py-0.5 rounded-full mb-1">
               الضيف • ولاية عنابة
             </span>
-            <h2 className="text-lg md:text-2xl lg:text-3xl font-black text-white leading-tight">
+            <h2 className="text-sm sm:text-lg md:text-2xl lg:text-3xl font-black text-white leading-tight">
               اتحاد بلدية الحجار
             </h2>
-            <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs md:text-sm font-black text-emerald-400 tracking-wider">I.R.B.E.H</span>
+            <div className="flex items-center gap-1.5 sm:gap-2 mt-1">
+              <span className="text-[11px] sm:text-xs md:text-sm font-black text-emerald-400 tracking-wider">I.R.B.E.H</span>
               <span className="text-slate-400 text-xs">•</span>
-              <span className="text-xs text-slate-300 font-medium">تأسس 1975</span>
+              <span className="text-[10px] sm:text-xs text-slate-300 font-medium">تأسس 1975</span>
             </div>
             <p className="hidden md:block text-[11px] text-emerald-200/80 mt-2 font-medium">
               أبناء مصنع الفولاذ • الأخضر والأبيض
@@ -250,21 +250,21 @@ export const MatchBanner: React.FC<MatchBannerProps> = ({
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
               {onOpenMatchCenter && (
                 <button
                   id="btn-open-match-center"
                   onClick={onOpenMatchCenter}
-                  className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs md:text-sm font-bold rounded-xl shadow-lg transition flex items-center gap-1.5 cursor-pointer"
+                  className="flex-1 sm:flex-initial px-5 py-2.5 min-h-[44px] bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white text-xs md:text-sm font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer active:scale-95"
                 >
                   <Trophy className="w-4 h-4" />
-                  مركز المباراة والتشكيلة
+                  <span>مركز المباراة والتشكيلة</span>
                 </button>
               )}
               <button
                 id="btn-share-poster"
                 onClick={handleShare}
-                className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition cursor-pointer border border-slate-700"
+                className="w-11 h-11 min-h-[44px] flex items-center justify-center bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl transition cursor-pointer border border-slate-700 active:scale-95 shrink-0"
                 title="مشاركة تفاصيل المباراة"
               >
                 <Share2 className="w-4 h-4" />

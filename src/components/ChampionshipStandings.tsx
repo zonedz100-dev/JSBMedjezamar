@@ -33,40 +33,40 @@ export const ChampionshipStandings: React.FC<ChampionshipStandingsProps> = ({ on
       </div>
 
       {/* Navigation Sub-Tabs */}
-      <div className="flex justify-center mb-8">
-        <div className="inline-flex p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+      <div className="flex justify-center mb-8 overflow-x-auto pb-2">
+        <div className="inline-flex p-1.5 bg-slate-900 border border-slate-800 rounded-2xl gap-1">
           <button
             onClick={() => setSubTab('fixtures')}
-            className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs md:text-sm font-bold transition cursor-pointer ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer active:scale-95 ${
               subTab === 'fixtures'
                 ? 'bg-red-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <Calendar className="w-4 h-4" />
-            رزنامة الجولات (الجولة {selectedRound})
+            <Calendar className="w-4 h-4 shrink-0" />
+            <span className="whitespace-nowrap">رزنامة الجولات (الجولة {selectedRound})</span>
           </button>
           <button
             onClick={() => setSubTab('table')}
-            className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs md:text-sm font-bold transition cursor-pointer ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer active:scale-95 ${
               subTab === 'table'
                 ? 'bg-red-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <Trophy className="w-4 h-4" />
-            جدول الترتيب العام
+            <Trophy className="w-4 h-4 shrink-0" />
+            <span className="whitespace-nowrap">جدول الترتيب العام</span>
           </button>
           <button
             onClick={() => setSubTab('info')}
-            className={`flex items-center gap-2 px-5 py-2 rounded-xl text-xs md:text-sm font-bold transition cursor-pointer ${
+            className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 min-h-[44px] rounded-xl text-xs sm:text-sm font-bold transition cursor-pointer active:scale-95 ${
               subTab === 'info'
                 ? 'bg-red-600 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
             }`}
           >
-            <Info className="w-4 h-4" />
-            نظام المنافسة
+            <Info className="w-4 h-4 shrink-0" />
+            <span className="whitespace-nowrap">نظام المنافسة</span>
           </button>
         </div>
       </div>
