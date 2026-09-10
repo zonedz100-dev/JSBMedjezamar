@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { INITIAL_LEAGUE_STANDINGS, ROUND_1_FIXTURES, ROUND_2_FIXTURES, LEAGUE_INFO } from '../data/leagueData';
 import { CLUBS_DATA } from '../data/clubsData';
 import { ClubBadge } from './ClubBadge';
-import { Trophy, Calendar, MapPin, Clock, Star, Info, ShieldCheck } from 'lucide-react';
+import { Trophy, Calendar, MapPin, Clock, Star, Info, ShieldCheck, FileText, Download, ExternalLink } from 'lucide-react';
 
 interface ChampionshipStandingsProps {
   onOpenMarqueeMatch?: () => void;
@@ -296,28 +296,85 @@ export const ChampionshipStandings: React.FC<ChampionshipStandingsProps> = ({ on
 
       {/* 3. COMPETITION INFO */}
       {subTab === 'info' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white space-y-4 max-w-4xl mx-auto shadow-xl">
-          <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-            <ShieldCheck className="w-8 h-8 text-emerald-400" />
-            <div>
-              <h3 className="text-lg font-black">نظام الصعود والنزول في رابطة عنابة الجهوي الأول</h3>
-              <p className="text-xs text-slate-400">المعايير الرسمية الصادرة عن الاتحاد الجزائري لكرة القدم والرابطة الجهوية</p>
+        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 text-white space-y-6 max-w-4xl mx-auto shadow-xl">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="w-8 h-8 text-emerald-400 shrink-0" />
+              <div>
+                <h3 className="text-lg font-black">آليات الصعود والنزول في بطولة رابطة عنابة (موسم 2026 / 2027)</h3>
+                <p className="text-xs text-slate-400">
+                  تنفيذاً للمنشور الفيدرالي رقم 83 المؤرخ في 08 سبتمبر 2026 الصادر عن الاتحاد الجزائري لكرة القدم (FAF)
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <a
+                href="/documents/lrfa_promotion_relegation_2026_2027.pdf"
+                download="lrfa_promotion_relegation_2026_2027.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-md"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>تحميل وثيقة الرابطة (PDF)</span>
+              </a>
+              <a
+                href="https://www.lrf-annaba.org/2016/4023-2026-2027-8/file"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-2 px-3 bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center gap-1.5"
+                title="فتح الرابط الرسمي في موقع الرابطة الجهوية"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>رابط الموقع</span>
+              </a>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs md:text-sm text-slate-300">
-            <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-              <span className="font-bold text-emerald-400 block mb-2">🏆 تأشيرة الصعود:</span>
-              <p className="leading-relaxed">
-                يصعد صاحب المركز الأول في نهاية الموسم مباشرة إلى قسم ما بين الرابطات (القسم الثالث الوطني) لتمثيل رابطة عنابة.
-              </p>
+            <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <span className="font-bold text-emerald-400 block text-sm">🏆 شروط الصعود إلى قسم ما بين الجهات:</span>
+              <ul className="list-disc list-inside space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                <li><strong className="text-white">الصعود الآلي:</strong> يصعد صاحب المرتبة الأولى (بطل بطولة الجهوي الأول) مباشرة لقسم ما بين الجهات.</li>
+                <li><strong className="text-white">أفضل أصحاب المركز الثاني:</strong> إمكانية صعود أصحاب أفضل المراتب الثانية بين الرابطات الجهوية السبع لشمال الوطن حسب الحصة المتاحة.</li>
+                <li><strong className="text-white">تركيبة 2027/2028:</strong> الحفاظ على بطولة الجهوي الأول بفوج واحد من 16 فريقاً.</li>
+              </ul>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-              <span className="font-bold text-rose-400 block mb-2">⚠️ شبح النزول:</span>
-              <p className="leading-relaxed">
-                تنزل الفرق المحتلة للمراتب الأخيرة إلى القسم الجهوي الثاني حسب عدد الأندية النازلة من الأقسام العليا في نهاية الموسم.
-              </p>
+            <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-2">
+              <span className="font-bold text-rose-400 block text-sm">⚠️ معادلات السقوط إلى الجهوي الثاني:</span>
+              <ul className="list-disc list-inside space-y-1.5 text-xs text-slate-300 leading-relaxed">
+                <li><strong className="text-white">السقوط الأساسي:</strong> سقوط 3 أندية على الأقل من الجهوي الأول (المراكز 14 و 15 و 16).</li>
+                <li><strong className="text-white">إفرازات ما بين الجهات:</strong> في حال نزول 3 أندية تابعة لإقليم عنابة من ما بين الجهات، يرتفع السقوط إلى 4 أندية (المراكز 13 و 14 و 15 و 16).</li>
+                <li><strong className="text-white">الجهوي الثاني:</strong> اعتماد 32 فريقاً موزعين على فوجين (16 نادياً لكل فوج) لموسم 2027/2028.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Detailed summary of the official 4 cases */}
+          <div className="p-4 rounded-xl bg-slate-950/90 border border-slate-800 text-xs space-y-2">
+            <div className="flex items-center gap-2 font-bold text-amber-400">
+              <FileText className="w-4 h-4" />
+              <span>الحالات الأربع الرسمية المعتمدة في وثيقة رابطة عنابة:</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1 text-[11px] text-slate-400">
+              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <strong className="text-white block mb-1">الحالة الأولى:</strong>
+                عدم سقوط أي نادٍ تابع لرابطة عنابة من قسم ما بين الجهات (صعود بطل الجهوي 1، ونزول 3 فرق).
+              </div>
+              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <strong className="text-white block mb-1">الحالة الثانية:</strong>
+                سقوط فريق واحد من ما بين الجهات (نزول 3 فرق وصعود بطلي الجهوي 2 وأفضل وصيف).
+              </div>
+              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <strong className="text-white block mb-1">الحالة الثالثة:</strong>
+                سقوط فريقين من ما بين الجهات (نزول 3 فرق من الجهوي الأول، وصعود بطلي الجهوي 2).
+              </div>
+              <div className="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+                <strong className="text-white block mb-1">الحالة الرابعة:</strong>
+                سقوط 3 فرق من ما بين الجهات (سقوط 4 فرق أصحاب المراتب 13، 14، 15، 16 من الجهوي 1).
+              </div>
             </div>
           </div>
         </div>

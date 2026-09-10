@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CLUBS_DATA } from '../data/clubsData';
 import { Club, Wilaya } from '../types';
 import { ClubBadge } from './ClubBadge';
+import { OfficialClubsStrip } from './OfficialClubsStrip';
 import { Search, ExternalLink, MapPin, Calendar, Shield, Facebook, Globe, X } from 'lucide-react';
 
 interface ClubsDirectoryProps {
@@ -28,7 +29,7 @@ export const ClubsDirectory: React.FC<ClubsDirectoryProps> = () => {
   return (
     <section id="clubs-directory" className="py-12 px-4 md:px-8 max-w-7xl mx-auto">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
+      <div className="text-center max-w-3xl mx-auto mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-400 text-xs font-bold mb-3">
           <Shield className="w-3.5 h-3.5" />
           <span>الرابطة الجهوية لكرة القدم عنابة (LRFA)</span>
@@ -40,6 +41,9 @@ export const ClubsDirectory: React.FC<ClubsDirectoryProps> = () => {
           الدليل الكامل والشامل لأندية بطولة الجهوي الأول - موسم 2026/2027 مع الروابط الرسمية وصفحات التواصل
         </p>
       </div>
+
+      {/* Official 16 Clubs Logo Strip Banner */}
+      <OfficialClubsStrip onSelectClub={(club) => setSelectedClub(club)} />
 
       {/* Filters and Search Bar */}
       <div className="bg-slate-900/90 border border-slate-800 p-4 rounded-2xl mb-8 shadow-xl">

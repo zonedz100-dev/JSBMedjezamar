@@ -14,6 +14,7 @@ import { AboutClub } from './components/AboutClub';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { ClubBadge } from './components/ClubBadge';
+import { TopClubsStripBar } from './components/TopClubsStripBar';
 import { CLUBS_DATA } from './data/clubsData';
 import { NEWS_ARTICLES } from './data/newsData';
 import { Trophy, Calendar, Flame, ArrowLeft, Shield, MapPin, ChevronLeft } from 'lucide-react';
@@ -33,6 +34,14 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         onOpenMatchCenter={() => setIsMatchCenterOpen(true)}
+      />
+
+      {/* Official 16 Clubs Logo Strip - Directly Under Main Menu */}
+      <TopClubsStripBar
+        onNavigateToClubs={() => {
+          setActiveTab('clubs');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
       />
 
       {/* Main App Container */}
@@ -136,34 +145,49 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Horizontal quick clubs roll */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
-                {CLUBS_DATA.slice(0, 8).map((club) => (
-                  <div
-                    key={club.id}
-                    onClick={() => {
-                      setActiveTab('clubs');
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className={`p-3 rounded-2xl bg-slate-900/70 border text-center transition cursor-pointer hover:-translate-y-1 ${
-                      club.id === 'jsbma'
-                        ? 'border-red-500/80 bg-red-950/20 shadow-md'
-                        : club.id === 'irbeh'
-                        ? 'border-emerald-500/80 bg-emerald-950/20 shadow-md'
-                        : 'border-slate-800 hover:border-slate-700'
-                    }`}
-                  >
-                    <div className="mx-auto mb-2 flex justify-center">
-                      <ClubBadge clubId={club.id} size="sm" />
+              {/* Horizontal quick clubs roll - All 16 Clubs */}
+              <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 shadow-xl">
+                <div
+                  onClick={() => {
+                    setActiveTab('clubs');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="cursor-pointer mb-3 rounded-xl overflow-hidden border border-slate-800 bg-slate-950/80 hover:border-red-500/40 transition group"
+                  title="انقر لعرض شريط الشعارات المعتمدة الكامل"
+                >
+                  <img
+                    src="/images/r1_official_clubs_strip_dark.png"
+                    alt="شريط شعارات أندية الجهوي الأول (16 نادياً)"
+                    className="w-full h-auto object-contain py-2 px-3 group-hover:scale-[1.01] transition-transform duration-300"
+                  />
+                </div>
+
+                <div className="grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-16 gap-2">
+                  {CLUBS_DATA.map((club) => (
+                    <div
+                      key={club.id}
+                      onClick={() => {
+                        setActiveTab('clubs');
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className={`p-2 rounded-xl bg-slate-950/60 border text-center transition cursor-pointer hover:-translate-y-0.5 group ${
+                        club.id === 'jsbma'
+                          ? 'border-amber-400 bg-amber-500/10 ring-1 ring-amber-400/50 shadow-md'
+                          : club.id === 'irbeh'
+                          ? 'border-emerald-500/80 bg-emerald-950/20 shadow-md'
+                          : 'border-slate-800/80 hover:border-slate-700'
+                      }`}
+                      title={`${club.nameAr} (${club.acronym})`}
+                    >
+                      <div className="mx-auto mb-1 flex justify-center group-hover:scale-110 transition-transform">
+                        <ClubBadge clubId={club.id} size="sm" />
+                      </div>
+                      <span className="text-[10px] font-bold text-white block truncate">
+                        {club.shortName}
+                      </span>
                     </div>
-                    <span className="text-xs font-bold text-white block truncate">
-                      {club.shortName}
-                    </span>
-                    <span className="text-[10px] text-slate-400 block font-mono">
-                      {club.acronym}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </section>
 

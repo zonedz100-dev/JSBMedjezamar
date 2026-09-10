@@ -19,7 +19,7 @@ export interface Club {
   facebookUrl?: string;
   description: string;
   badgeStyle: 'circle' | 'shield' | 'oval';
-  badgeSymbol: 'lion' | 'stripes' | 'eagle' | 'star' | 'gazelle' | 'crescent' | 'flame' | 'tower';
+  badgeSymbol: 'lion' | 'stripes' | 'eagle' | 'star' | 'gazelle' | 'crescent' | 'flame' | 'tower' | 'tiger' | 'ball' | 'lighthouse' | 'olympic';
 }
 
 export interface MatchFixture {
@@ -59,12 +59,15 @@ export interface NewsArticle {
   id: number;
   title: string;
   date: string;
-  category: 'مباريات' | 'أخبار النادي' | 'تدريبات' | 'الرابطة الجهوية' | 'طاقم فني';
+  category: 'مباريات' | 'أخبار النادي' | 'تدريبات' | 'الرابطة الجهوية' | 'طاقم فني' | 'قوانين ولوائح';
   image: string;
   summary: string;
   content: string;
   author?: string;
   views?: number;
+  fileUrl?: string;
+  officialUrl?: string;
+  isOfficialDocument?: boolean;
 }
 
 export interface Player {

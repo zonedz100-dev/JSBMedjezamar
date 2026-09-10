@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { NEWS_ARTICLES, JSBMA_SQUAD } from '../data/newsData';
 import { NewsArticle } from '../types';
-import { Calendar, User, Eye, ArrowLeft, X, Share2, Sparkles, Shield, Trophy } from 'lucide-react';
+import { Calendar, User, Eye, ArrowLeft, X, Share2, Sparkles, Shield, Trophy, FileText, Download, ExternalLink } from 'lucide-react';
 
 export const TeamNews: React.FC = () => {
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('الكل');
   const [squadFilter, setSquadFilter] = useState<string>('الكل');
 
-  const categories = ['الكل', 'مباريات', 'أخبار النادي', 'تدريبات', 'طاقم فني'];
+  const categories = ['الكل', 'الرابطة الجهوية', 'مباريات', 'أخبار النادي', 'تدريبات', 'طاقم فني'];
 
   const filteredArticles = NEWS_ARTICLES.filter((art) => {
     return selectedCategory === 'الكل' || art.category === selectedCategory;
@@ -65,9 +65,17 @@ export const TeamNews: React.FC = () => {
                   alt={article.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 right-3 bg-red-600/90 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
-                  {article.category}
-                </span>
+                <div className="absolute top-3 right-3 flex flex-wrap gap-1.5">
+                  <span className="bg-red-600/95 backdrop-blur-sm text-white text-[11px] font-bold px-3 py-1 rounded-full shadow-md">
+                    {article.category}
+                  </span>
+                  {article.isOfficialDocument && (
+                    <span className="bg-emerald-600/95 backdrop-blur-sm text-white text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-md flex items-center gap-1">
+                      <FileText className="w-3 h-3" />
+                      وثيقة رسمية
+                    </span>
+                  )}
+                </div>
               </div>
 
               <div className="p-5">
@@ -93,12 +101,37 @@ export const TeamNews: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-5 pt-0">
+            <div className="p-5 pt-0 space-y-2">
+              {article.officialUrl && (
+                <div className="flex items-center gap-2">
+                  <a
+                    href={article.fileUrl || article.officialUrl}
+                    download={article.fileUrl ? article.fileUrl.split('/').pop() : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-2 px-3 bg-emerald-950/80 hover:bg-emerald-900/90 text-emerald-300 border border-emerald-500/40 rounded-xl text-[11px] font-bold transition flex items-center justify-center gap-1.5"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>{article.fileUrl?.endsWith('.pdf') ? 'تحميل الوثيقة PDF' : 'تحميل الوثيقة الرسمية'}</span>
+                  </a>
+                  <a
+                    href={article.officialUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl transition"
+                    title="فتح رابط الملف بموقع الرابطة"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              )}
               <button
                 onClick={() => setSelectedArticle(article)}
                 className="w-full py-2.5 bg-slate-800 hover:bg-red-600 text-slate-200 hover:text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 cursor-pointer"
               >
-                <span>قراءة الخبر كاملاً</span>
+                <span>قراءة التفاصيل والبنود كاملة</span>
                 <ArrowLeft className="w-4 h-4" />
               </button>
             </div>
@@ -200,6 +233,56 @@ export const TeamNews: React.FC = () => {
               <h2 className="text-xl md:text-2xl font-black text-white leading-snug">
                 {selectedArticle.title}
               </h2>
+
+              {selectedArticle.officialUrl && (
+                <div className="p-4 rounded-2xl bg-gradient-to-br from-emerald-950/60 via-slate-900 to-slate-950 border border-emerald-500/40 space-y-3">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-600/20 border border-emerald-500/40 flex items-center justify-center shrink-0">
+                      <FileText className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black text-emerald-300">
+                        الوثيقة الرسمية لتحميل ومطالعة المنشور الكامل
+                      </h4>
+                      <p className="text-[11px] text-slate-400">
+                        صادر عن الرابطة الجهوية لكرة القدم عنابة (LRFA)
+                      </p>
+                    </div>
+                  </div>
+
+                  {selectedArticle.fileUrl && (selectedArticle.fileUrl.endsWith('.jpg') || selectedArticle.fileUrl.endsWith('.png')) && (
+                    <div className="rounded-xl overflow-hidden border border-emerald-500/30 bg-black/40">
+                      <img
+                        src={selectedArticle.fileUrl}
+                        alt={selectedArticle.title}
+                        className="w-full max-h-96 object-contain mx-auto"
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex flex-col sm:flex-row gap-2 pt-1">
+                    <a
+                      href={selectedArticle.fileUrl || selectedArticle.officialUrl}
+                      download={selectedArticle.fileUrl ? selectedArticle.fileUrl.split('/').pop() : 'lrfa_document'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 py-2.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>{selectedArticle.fileUrl?.endsWith('.pdf') ? 'تحميل الوثيقة الرسمية بصيغة PDF' : 'تحميل صورة الوثيقة الأصلية'}</span>
+                    </a>
+                    <a
+                      href={selectedArticle.officialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-2.5 px-4 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4 text-slate-400" />
+                      <span>رابط الملف في موقع الرابطة</span>
+                    </a>
+                  </div>
+                </div>
+              )}
 
               <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-line">
                 {selectedArticle.content}

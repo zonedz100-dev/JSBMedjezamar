@@ -8,6 +8,7 @@ interface ClubBadgeProps {
 }
 
 export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', className = '' }) => {
+  const [imageError, setImageError] = React.useState(false);
   const club = CLUBS_DATA.find((c) => c.id === clubId) || CLUBS_DATA[0];
 
   const sizeClasses = {
@@ -17,7 +18,28 @@ export const ClubBadge: React.FC<ClubBadgeProps> = ({ clubId, size = 'md', class
     xl: 'w-32 h-32',
   }[size];
 
-  // Official club logo for JSBMA (الجيل الصاعد لبلدية مجاز عمار)
+  // If real club logo image is available and hasn't errored
+  if (club?.logoUrl && !imageError) {
+    const isJSBMA = clubId === 'jsbma';
+    return (
+      <div
+        className={`relative inline-flex items-center justify-center select-none ${sizeClasses} ${className}`}
+        title={`${club.nameAr} (${club.acronym})`}
+      >
+        <img
+          src={club.logoUrl}
+          alt={club.nameAr}
+          className={`w-full h-full object-contain drop-shadow-md transition-transform duration-300 hover:scale-110 ${
+            isJSBMA ? 'rounded-full ring-2 ring-amber-400 ring-offset-2 ring-offset-slate-900 shadow-amber-500/20 shadow-lg' : ''
+          }`}
+          referrerPolicy="no-referrer"
+          onError={() => setImageError(true)}
+        />
+      </div>
+    );
+  }
+
+  // Official club logo for JSBMA (الجيل الصاعد لبلدية مجاز عمار) fallback
   if (clubId === 'jsbma') {
     return (
       <div
